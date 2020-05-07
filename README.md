@@ -11,11 +11,11 @@ Examples of when to use various Redux Saga keywords and techniques:
 * Use case: Getting / fetching a list of data from an API.
 
 * Example:
-
+ ```javascript
 function* watchGetUsersRequest(){
     yield takeEvery(action.Types.GET_USERS_REQUEST, getUsers);
 }
-
+```
 
 # "takeLatest"
 * Use this when: There's the potential for a redux action to be dispatched multiple times in a short period and could potentially initiate the running of multiple instances of the same saga - use takeLatest to ONLY take the latest currently running saga for the associated dispatched redux action.
@@ -40,7 +40,7 @@ function* watchGetLoggedInUserRequest(){
 Accepting a payment. Generally you don't want to be able to accept multiple, simultaneous payments - you'd want to wait for the current transaction to complete before allowing the ability to accept another payment.
 
 * Example:
-
+ ```javascript
 function* watchDeleteUserRequest(){
     while(true){
         const {userId} = yield take(action.Types.DELETE_USER_REQUEST);
@@ -48,7 +48,7 @@ function* watchDeleteUserRequest(){
     }
 }
 
-
+```
 # "call"
 Use this when: You want to call a function or a promise but want to wait for that function or promise to finish running before executing the next line of code.
 
@@ -57,7 +57,7 @@ Use this when: You want to call a function or a promise but want to wait for tha
 Calling a promise within a worker saga that queries an API endpoint.
 
 * Examples:
-
+```javascript
 function* deleteUser({userId}){
     try{
         const result = yield call(api.deleteUser, userId);
@@ -65,14 +65,14 @@ function* deleteUser({userId}){
     
     }
 }
- 
+
 function* watchDeleteUserRequest(){
     while(true){
         const {userId} = yield take(action.Types.DELETE_USER_REQUEST);
         yield call(deleteUser, {userId});
     }
 }
-
+```
 
 # "put"
 * * Use this when: You want to dispatch a redux action from within a redux saga.
@@ -80,7 +80,7 @@ function* watchDeleteUserRequest(){
 * Use case: Any time you want to update your redux state - usually after a call to an API resolves and you want to update your redux state with the resulting data from the API.
 
 * Examples:
-
+```javascript
 function* getUsers(){
     try{
         const result = yield call(api.getUsers);
@@ -91,3 +91,4 @@ function* getUsers(){
     
     }
 }
+```
