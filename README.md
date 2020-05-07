@@ -25,10 +25,12 @@ function* watchGetUsersRequest(){
 If you have a complex app that queries the same API endpoint from multiple components at the same time - for example if you have a navbar that displays the currently logged in user's name, but the user is viewing a 'settings' page to view their personal details meaning both the navbar and the settings page will query the same API endpoint - you'll generally want to take the latest call for that data.
 
 * Example:
-
+Markup :  `code()`
 function* watchGetLoggedInUserRequest(){
     yield takeLatest(action.Types.GET_LOGGED_IN_USER_REQUEST, getLoggedInUser);
 }
+Markup : ```javascript
+         ```
 
 
 # Blocking saga with "take"
