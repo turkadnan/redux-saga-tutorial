@@ -1,4 +1,4 @@
-# redux-saga-tutorial
+# Redux Saga Tutorial
 
 # Redux Saga Cheat Sheet
 Examples of when to use various Redux Saga keywords and techniques:
@@ -75,7 +75,7 @@ function* watchDeleteUserRequest(){
 ```
 
 # "put"
-* * Use this when: You want to dispatch a redux action from within a redux saga.
+* Use this when: You want to dispatch a redux action from within a redux saga.
 
 * Use case: Any time you want to update your redux state - usually after a call to an API resolves and you want to update your redux state with the resulting data from the API.
 
